@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- vue -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <!-- font-awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+  <!-- css -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <title>vue todo</title>
+</head>
+<body>
+  
+  <div id="app" class="container">
+
+    <div class="logo">
+      <img src=" https://www.boolean.careers/images/misc/logo.png" alt="Logo boolean">
+    </div>
+    <div class="new-todo">
+      <h4 v-if="alertActive">Attenzione: inserire un testo più lungo!</h4>
+      <input
+           v-model="strTodo" 
+           @keyup.enter="addTodo"
+           type="text" 
+           placeholder="Inserisci un promemoria">
+      <button @click="addTodo">Aggiungi</button>
+    </div>
+    <div class="todos-container">
+      <ul>
+        <li
+            v-for="(todo, index) in todos"
+            :class="todo.checked ? 'checked':null"
+            :style="(index === todo.length -1) ?'border:none' : null"
+            @click="todo.checked = !todo.checked"
+           >
+            {{ todo.todo }}
+           <i 
+              @click.stop="removeTodo(index)"
+              class="fas fa-times"></i>
+        </li>
+      </ul>
+    </div>
+
+
+
+  </div>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
